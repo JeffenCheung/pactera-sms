@@ -1,0 +1,38 @@
+
+/* Drop Tables */
+
+DROP TABLE test_data;
+
+
+
+
+/* Create Tables */
+
+CREATE TABLE test_data
+(
+	id varchar2(64) NOT NULL,
+	user_id varchar2(64),
+	office_id varchar2(64),
+	area_id nvarchar2(64),
+	name nvarchar2(100),
+	sex char(1),
+	in_date date,
+	create_by varchar2(64) NOT NULL,
+	create_date timestamp NOT NULL,
+	update_by varchar2(64) NOT NULL,
+	update_date timestamp NOT NULL,
+	remarks nvarchar2(255),
+	del_flag char(1) DEFAULT '0' NOT NULL,
+	PRIMARY KEY (id)
+);
+
+
+/* Create Indexes */
+
+CREATE INDEX test_data_del_flag ON test_data (del_flag);
+
+
+
+/* Comments */
+
+COMMENT ON TABLE test_data IS '业务数据表';

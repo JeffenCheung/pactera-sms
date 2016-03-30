@@ -1,0 +1,47 @@
+/**
+ * Copyright &copy; 2014-2016 <a href="https://pactera.com">Pactera-JeeSite</a> All rights reserved.served.
+ */
+package com.pactera.jeesite.modules.qar.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.thinkgem.jeesite.common.persistence.Page;
+import com.thinkgem.jeesite.common.service.CrudService;
+import com.pactera.jeesite.modules.qar.entity.QarEvent;
+import com.pactera.jeesite.modules.qar.dao.QarEventDao;
+
+/**
+ * QAR超限事件Service
+ * @author Jeffen@pactera
+ * @version 2015-06-20
+ */
+@Service
+@Transactional(readOnly = true)
+public class QarEventService extends CrudService<QarEventDao, QarEvent> {
+
+	public QarEvent get(String id) {
+		return super.get(id);
+	}
+	
+	public List<QarEvent> findList(QarEvent qarEvent) {
+		return super.findList(qarEvent);
+	}
+	
+	public Page<QarEvent> findPage(Page<QarEvent> page, QarEvent qarEvent) {
+		return super.findPage(page, qarEvent);
+	}
+	
+	@Transactional(readOnly = false)
+	public void save(QarEvent qarEvent) {
+		super.save(qarEvent);
+	}
+	
+	@Transactional(readOnly = false)
+	public void delete(QarEvent qarEvent) {
+		super.delete(qarEvent);
+	}
+	
+}

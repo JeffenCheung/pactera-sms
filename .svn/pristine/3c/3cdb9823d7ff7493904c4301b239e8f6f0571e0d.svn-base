@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pactera.jeesite.modules.qar.dao.QarEventDao">
+    
+	<sql id="qarEventColumns">
+		a.id AS "id",
+		a.flt_fileno AS "fltFileno",
+		a.evt_starttime AS "evtStarttime",
+		a.evt_prono AS "evtProno",
+		a.evt_class AS "evtClass",
+		a.evt_phase AS "evtPhase",
+		a.evt_fltdeparture AS "evtFltdeparture",
+		a.evt_fltarrival AS "evtFltarrival",
+		a.evt_fltno AS "evtFltno",
+		a.evt_actail AS "evtActail",
+		a.evt_fltstatus AS "evtFltstatus",
+		a.evt_protype AS "evtProtype",
+		a.evt_fltrunwayldg AS "evtFltrunwayldg",
+		a.evt_fltrunwayto AS "evtFltrunwayto",
+		a.evt_valid AS "evtValid",
+		a.evt_limit AS "evtLimit",
+		a.evt_maxval AS "evtMaxval",
+		a.evt_duration AS "evtDuration",
+		a.evt_timetopeak AS "evtTimetopeak",
+		a.evt_avggap AS "evtAvggap",
+		a.evt_fltidterased AS "evtFltidterased",
+		a.evt_arlcode AS "evtArlcode",
+		a.evt_note AS "evtNote",
+		a.evt_mail AS "evtMail",
+		a.create_by AS "createBy.id",
+		a.create_date AS "createDate",
+		a.update_by AS "updateBy.id",
+		a.update_date AS "updateDate",
+		a.remarks AS "remarks",
+		a.del_flag AS "delFlag"
+	</sql>
+	
+	<sql id="qarEventJoins">
+	</sql>
+    
+	<select id="get" resultType="QarEvent">
+		SELECT 
+			<include refid="qarEventColumns"/>
+		FROM qar_event a
+		<include refid="qarEventJoins"/>
+		WHERE a.id = #{id}
+	</select>
+	
+	<select id="findList" resultType="QarEvent">
+		SELECT 
+			<include refid="qarEventColumns"/>
+		FROM qar_event a
+		<include refid="qarEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+			<if test="fltFileno != null and fltFileno != ''">
+				AND a.flt_fileno = #{fltFileno}
+			</if>
+			<if test="evtStarttime != null and evtStarttime != ''">
+				AND a.evt_starttime &gt;= #{evtStarttime}
+			</if>
+			<if test="evtProno != null and evtProno != ''">
+				AND a.evt_prono = #{evtProno}
+			</if>
+			<if test="evtClass != null and evtClass != ''">
+				AND a.evt_class = #{evtClass}
+			</if>
+			<if test="evtPhase != null and evtPhase != ''">
+				AND a.evt_phase = #{evtPhase}
+			</if>
+			<if test="evtFltdeparture != null and evtFltdeparture != ''">
+				AND a.evt_fltdeparture = #{evtFltdeparture}
+			</if>
+			<if test="evtFltarrival != null and evtFltarrival != ''">
+				AND a.evt_fltarrival = #{evtFltarrival}
+			</if>
+			<if test="evtFltno != null and evtFltno != ''">
+				AND a.evt_fltno = #{evtFltno}
+			</if>
+		</where>
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="findAllList" resultType="QarEvent">
+		SELECT 
+			<include refid="qarEventColumns"/>
+		FROM qar_event a
+		<include refid="qarEventJoins"/>
+		<where>
+			a.del_flag = #{DEL_FLAG_NORMAL}
+		</where>		
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY a.update_date DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO qar_event(
+			id,
+			flt_fileno,
+			evt_starttime,
+			evt_prono,
+			evt_class,
+			evt_phase,
+			evt_fltdeparture,
+			evt_fltarrival,
+			evt_fltno,
+			evt_actail,
+			evt_fltstatus,
+			evt_protype,
+			evt_fltrunwayldg,
+			evt_fltrunwayto,
+			evt_valid,
+			evt_limit,
+			evt_maxval,
+			evt_duration,
+			evt_timetopeak,
+			evt_avggap,
+			evt_fltidterased,
+			evt_arlcode,
+			evt_note,
+			evt_mail,
+			create_by,
+			create_date,
+			update_by,
+			update_date,
+			remarks,
+			del_flag
+		) VALUES (
+			#{id},
+			#{fltFileno},
+			#{evtStarttime},
+			#{evtProno},
+			#{evtClass},
+			#{evtPhase},
+			#{evtFltdeparture},
+			#{evtFltarrival},
+			#{evtFltno},
+			#{evtActail},
+			#{evtFltstatus},
+			#{evtProtype},
+			#{evtFltrunwayldg},
+			#{evtFltrunwayto},
+			#{evtValid},
+			#{evtLimit},
+			#{evtMaxval},
+			#{evtDuration},
+			#{evtTimetopeak},
+			#{evtAvggap},
+			#{evtFltidterased},
+			#{evtArlcode},
+			#{evtNote},
+			#{evtMail},
+			#{createBy.id},
+			#{createDate},
+			#{updateBy.id},
+			#{updateDate},
+			#{remarks},
+			#{delFlag}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE qar_event SET 	
+			flt_fileno = #{fltFileno},
+			evt_starttime = #{evtStarttime},
+			evt_prono = #{evtProno},
+			evt_class = #{evtClass},
+			evt_phase = #{evtPhase},
+			evt_fltdeparture = #{evtFltdeparture},
+			evt_fltarrival = #{evtFltarrival},
+			evt_fltno = #{evtFltno},
+			evt_actail = #{evtActail},
+			evt_fltstatus = #{evtFltstatus},
+			evt_protype = #{evtProtype},
+			evt_fltrunwayldg = #{evtFltrunwayldg},
+			evt_fltrunwayto = #{evtFltrunwayto},
+			evt_valid = #{evtValid},
+			evt_limit = #{evtLimit},
+			evt_maxval = #{evtMaxval},
+			evt_duration = #{evtDuration},
+			evt_timetopeak = #{evtTimetopeak},
+			evt_avggap = #{evtAvggap},
+			evt_fltidterased = #{evtFltidterased},
+			evt_arlcode = #{evtArlcode},
+			evt_note = #{evtNote},
+			evt_mail = #{evtMail},
+			update_by = #{updateBy.id},
+			update_date = #{updateDate},
+			remarks = #{remarks}
+		WHERE id = #{id}
+	</update>
+	
+	<update id="delete">
+		UPDATE qar_event SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

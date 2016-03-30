@@ -1,0 +1,275 @@
+/**
+ * Copyright &copy; 2014-2016 <a href="https://pactera.com">Pactera-JeeSite</a> All rights reserved.served.
+ */
+package com.pactera.jeesite.modules.qar.entity;
+
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Length;
+
+import com.thinkgem.jeesite.common.persistence.DataEntity;
+import com.orangesignal.csv.annotation.*;
+
+/**
+ * QAR超限事件Entity
+ * @author Jeffen@pactera
+ * @version 2015-06-20
+ */
+@CsvEntity(header = true)
+public class QarEvent extends DataEntity<QarEvent> {
+	
+	private static final long serialVersionUID = 1L;
+	@CsvColumn(defaultValue = "1", name = "FLT_FILENO")
+	private Integer fltFileno;		// FLT_FILENO
+	@CsvColumn(defaultValue = "2015-06-17", format = "yyyy-MM-dd", name = "EVT_STARTTIME")
+	private Date evtStarttime;		// EVT_STARTTIME
+	@CsvColumn(defaultValue = "12.45", name = "EVT_PRONO")
+	private Integer evtProno;		// EVT_PRONO
+	@CsvColumn(name = "EVT_CLASS")
+	private String evtClass;		// EVT_CLASS
+	@CsvColumn(name = "EVT_PHASE")
+	private Integer evtPhase;		// EVT_PHASE
+	@CsvColumn(name = "EVT_FLTDEPARTURE")
+	private String evtFltdeparture;		// EVT_FLTDEPARTURE
+	@CsvColumn(name = "EVT_FLTARRIVAL")
+	private String evtFltarrival;		// EVT_FLTARRIVAL
+	@CsvColumn(name = "EVT_FLTNO")
+	private String evtFltno;		// EVT_FLTNO
+	@CsvColumn(name = "EVT_ACTAIL")
+	private String evtActail;		// EVT_ACTAIL
+	@CsvColumn(name = "EVT_FLTSTATUS")
+	private String evtFltstatus;		// EVT_FLTSTATUS
+	@CsvColumn(name = "EVT_PROTYPE")
+	private String evtProtype;		// EVT_PROTYPE
+	@CsvColumn(name = "EVT_FLTRUNWAYLDG")
+	private String evtFltrunwayldg;		// EVT_FLTRUNWAYLDG
+	@CsvColumn(name = "EVT_FLTRUNWAYTO")
+	private String evtFltrunwayto;		// EVT_FLTRUNWAYTO
+	@CsvColumn(name = "EVT_VALID")
+	private String evtValid;		// EVT_VALID
+	@CsvColumn(name = "EVT_LIMIT")
+	private Double evtLimit;		// EVT_LIMIT
+	@CsvColumn(name = "EVT_MAXVAL")
+	private Double evtMaxval;		// EVT_MAXVAL
+	@CsvColumn(name = "EVT_DURATION")
+	private Double evtDuration;		// EVT_DURATION
+	@CsvColumn(name = "EVT_TIMETOPEAK")
+	private Double evtTimetopeak;		// EVT_TIMETOPEAK
+	@CsvColumn(name = "EVT_AVGGAP")
+	private Double evtAvggap;		// EVT_AVGGAP
+	@CsvColumn(name = "EVT_FLTIDTERASED")
+	private Double evtFltidterased;		// EVT_FLTIDTERASED
+	@CsvColumn(name = "EVT_ARLCODE")
+	private String evtArlcode;		// EVT_ARLCODE
+	@CsvColumn(name = "EVT_NOTE")
+	private String evtNote;		// EVT_NOTE
+	@CsvColumn(name = "EVT_MAIL")
+	private String evtMail;		// EVT_MAIL
+	
+	public QarEvent() {
+		super();
+	}
+
+	public QarEvent(String id){
+		super(id);
+	}
+
+	public Integer getFltFileno() {
+		return fltFileno;
+	}
+
+	public void setFltFileno(Integer fltFileno) {
+		this.fltFileno = fltFileno;
+	}
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getEvtStarttime() {
+		return evtStarttime;
+	}
+
+	public void setEvtStarttime(Date evtStarttime) {
+		this.evtStarttime = evtStarttime;
+	}
+	
+	public Integer getEvtProno() {
+		return evtProno;
+	}
+
+	public void setEvtProno(Integer evtProno) {
+		this.evtProno = evtProno;
+	}
+	
+	@Length(min=0, max=1, message="EVT_CLASS长度必须介于 0 和 1 之间")
+	public String getEvtClass() {
+		return evtClass;
+	}
+
+	public void setEvtClass(String evtClass) {
+		this.evtClass = evtClass;
+	}
+	
+	public Integer getEvtPhase() {
+		return evtPhase;
+	}
+
+	public void setEvtPhase(Integer evtPhase) {
+		this.evtPhase = evtPhase;
+	}
+	
+	@Length(min=0, max=4, message="EVT_FLTDEPARTURE长度必须介于 0 和 4 之间")
+	public String getEvtFltdeparture() {
+		return evtFltdeparture;
+	}
+
+	public void setEvtFltdeparture(String evtFltdeparture) {
+		this.evtFltdeparture = evtFltdeparture;
+	}
+	
+	@Length(min=0, max=4, message="EVT_FLTARRIVAL长度必须介于 0 和 4 之间")
+	public String getEvtFltarrival() {
+		return evtFltarrival;
+	}
+
+	public void setEvtFltarrival(String evtFltarrival) {
+		this.evtFltarrival = evtFltarrival;
+	}
+	
+	@Length(min=0, max=10, message="EVT_FLTNO长度必须介于 0 和 10 之间")
+	public String getEvtFltno() {
+		return evtFltno;
+	}
+
+	public void setEvtFltno(String evtFltno) {
+		this.evtFltno = evtFltno;
+	}
+	
+	@Length(min=0, max=6, message="EVT_ACTAIL长度必须介于 0 和 6 之间")
+	public String getEvtActail() {
+		return evtActail;
+	}
+
+	public void setEvtActail(String evtActail) {
+		this.evtActail = evtActail;
+	}
+	
+	@Length(min=0, max=1, message="EVT_FLTSTATUS长度必须介于 0 和 1 之间")
+	public String getEvtFltstatus() {
+		return evtFltstatus;
+	}
+
+	public void setEvtFltstatus(String evtFltstatus) {
+		this.evtFltstatus = evtFltstatus;
+	}
+	
+	@Length(min=0, max=1, message="EVT_PROTYPE长度必须介于 0 和 1 之间")
+	public String getEvtProtype() {
+		return evtProtype;
+	}
+
+	public void setEvtProtype(String evtProtype) {
+		this.evtProtype = evtProtype;
+	}
+	
+	@Length(min=0, max=3, message="EVT_FLTRUNWAYLDG长度必须介于 0 和 3 之间")
+	public String getEvtFltrunwayldg() {
+		return evtFltrunwayldg;
+	}
+
+	public void setEvtFltrunwayldg(String evtFltrunwayldg) {
+		this.evtFltrunwayldg = evtFltrunwayldg;
+	}
+	
+	@Length(min=0, max=3, message="EVT_FLTRUNWAYTO长度必须介于 0 和 3 之间")
+	public String getEvtFltrunwayto() {
+		return evtFltrunwayto;
+	}
+
+	public void setEvtFltrunwayto(String evtFltrunwayto) {
+		this.evtFltrunwayto = evtFltrunwayto;
+	}
+	
+	@Length(min=0, max=1, message="EVT_VALID长度必须介于 0 和 1 之间")
+	public String getEvtValid() {
+		return evtValid;
+	}
+
+	public void setEvtValid(String evtValid) {
+		this.evtValid = evtValid;
+	}
+	
+	public Double getEvtLimit() {
+		return evtLimit;
+	}
+
+	public void setEvtLimit(Double evtLimit) {
+		this.evtLimit = evtLimit;
+	}
+	
+	public Double getEvtMaxval() {
+		return evtMaxval;
+	}
+
+	public void setEvtMaxval(Double evtMaxval) {
+		this.evtMaxval = evtMaxval;
+	}
+	
+	public Double getEvtDuration() {
+		return evtDuration;
+	}
+
+	public void setEvtDuration(Double evtDuration) {
+		this.evtDuration = evtDuration;
+	}
+	
+	public Double getEvtTimetopeak() {
+		return evtTimetopeak;
+	}
+
+	public void setEvtTimetopeak(Double evtTimetopeak) {
+		this.evtTimetopeak = evtTimetopeak;
+	}
+	
+	public Double getEvtAvggap() {
+		return evtAvggap;
+	}
+
+	public void setEvtAvggap(Double evtAvggap) {
+		this.evtAvggap = evtAvggap;
+	}
+	
+	public Double getEvtFltidterased() {
+		return evtFltidterased;
+	}
+
+	public void setEvtFltidterased(Double evtFltidterased) {
+		this.evtFltidterased = evtFltidterased;
+	}
+	
+	@Length(min=0, max=2, message="EVT_ARLCODE长度必须介于 0 和 2 之间")
+	public String getEvtArlcode() {
+		return evtArlcode;
+	}
+
+	public void setEvtArlcode(String evtArlcode) {
+		this.evtArlcode = evtArlcode;
+	}
+	
+	@Length(min=0, max=100, message="EVT_NOTE长度必须介于 0 和 100 之间")
+	public String getEvtNote() {
+		return evtNote;
+	}
+
+	public void setEvtNote(String evtNote) {
+		this.evtNote = evtNote;
+	}
+	
+	@Length(min=0, max=50, message="EVT_MAIL长度必须介于 0 和 50 之间")
+	public String getEvtMail() {
+		return evtMail;
+	}
+
+	public void setEvtMail(String evtMail) {
+		this.evtMail = evtMail;
+	}
+	
+}
