@@ -181,7 +181,7 @@ public class TestDataShowHowController extends BaseController {
 	public String importCsvFile(MultipartFile file,
 			RedirectAttributes redirectAttributes) throws Exception {
 		if (Global.isDemoMode()) {
-			addMessage(redirectAttributes, "演示模式，不允许操作！");
+			addMessage4DemoMode(redirectAttributes);
 			return "redirect:" + Global.getAdminPath()
 					+ "/test/testDataShowHow/?repage";
 		}
